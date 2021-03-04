@@ -283,11 +283,14 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             PartHealth.MaxValue = context.TotalHealth;
             PartHealth.Value = context.Health;
             double percentage = PartHealth.Value / Math.Max(1, PartHealth.MaxValue);
+            TimeSpan TVal = TimeSpan.FromSeconds(context.TenderizeMaxDuration - context.TenderizeDuration);
+            string TenderizeTimer = (TVal.Ticks > 0 ? $"{TVal:mm\\:ss}" :"");
             string format = ConfigManager.Settings.Overlay.MonstersComponent.PartTextFormat;
             PartHealthText = format.Replace("{Current}", $"{PartHealth.Value:0}")
                 .Replace("{Max}", $"{PartHealth.MaxValue:0}")
                 .Replace("{Percentage}", $"{percentage * 100:0}")
-                .Replace("{Tenderize}", $"{TimeSpan.FromSeconds(context.TenderizeMaxDuration - context.TenderizeDuration):mm\\:ss}");
+                //.Replace("{Tenderize}", $"{TimeSpan.FromSeconds(context.TenderizeMaxDuration - context.TenderizeDuration):mm\\:ss}");
+                .Replace("{Tenderize}", TenderizeTimer);
         }
 
         public int CompareTo(MonsterPart other)

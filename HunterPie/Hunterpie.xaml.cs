@@ -913,15 +913,19 @@ namespace HunterPie
         private async void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
         {
             // X button function;
-            bool exitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+            /*bool exitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
 
             config.HunterPie.PosX = Left;
             config.HunterPie.PosY = Top;
 
             await ConfigManager.TrySaveSettingsAsync();
 
-            if (exitConfirmation)
-                Close();
+            if (exitConfirmation)*/
+            config.HunterPie.PosX = Left;
+            config.HunterPie.PosY = Top;
+
+            await ConfigManager.TrySaveSettingsAsync();
+            Close();
         }
 
         private void OnWindowDrag(object sender, MouseButtonEventArgs e)
